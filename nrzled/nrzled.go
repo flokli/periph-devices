@@ -245,7 +245,7 @@ func (d *Dev) Write(pixels []byte) (int, error) {
 		return len(pixels), nil
 	}
 	d.rasterSPI(d.rawBuf, pixels, false)
-	return len(pixels), d.s.Tx(d.b.Bits, nil)
+	return len(pixels), d.s.Tx(append([]byte{0x00, 0x00, 0x00}, d.b.Bits...), nil)
 }
 
 // Bits
